@@ -61,19 +61,31 @@ class BankAccount:
 
 
 class Employee:
-    def __init__(self, firstname, lastname):
+    def __init__(self, firstname, lastname, position, base_salary=60000):
         """Create employee object that can create customers and create bank accounts"""
         self.firstname = firstname
         self.lastname = lastname
-        if
+        self.salary = base_salary
+        self.position = position
+        f = open('employee_information.csv', 'w+')
+        try:
+            data = pd.read_csv(f)
+            data.empty
+            f.close()
+        except pd.errors.EmptyDataError:
+            f.write('employee_id, firstname, lastname, salary, position\n')
+            f.close()
         data = pd.read_csv('employee_information.csv')
-        if len(data) > 0:
-            employee_id = max(data['user_id']) + 1
-        else:
+
+        print(data.empty)
+        if data.empty:
             employee_id = 1000000000
+        else:
+            employee_id = max(data['employee_id']) + 1
+        print(employee_id)
         self.employee_id = employee_id
-        append_this = [self.firstname, self.lastname, self.employee_id]
-        with open('employee_information.csv', 'a', newline='') as f:
+        append_this = [self.employee_id, self.firstname, self.lastname, self.salary, self.position]
+        with open('employee_information.csv', 'a+') as f:
             wr = csv.writer(f, dialect='excel')
             wr.writerow(append_this)
 
@@ -96,7 +108,7 @@ class Employee:
         return bank_account
 
 
-x = Employee('jordan', 'tang')
+x = Employee('jordan', 'tang', 'analydddst')
 x.create_customer('jordan', 'tang', 'address')
 # x = Customer('Jordan', 'Tang', 'my address')
 #print(x.firstname)
