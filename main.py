@@ -59,42 +59,45 @@ class BankAccount:
     def account_config(self):
         return self.account_type
 
+
 class Employee:
-	def __init__(self, firstname, lastname):
-	"""Create employee object that can create customers and create bank accounts"""
-		self.firstname = firstname
-		self.lastname = lastname
-		data = pd.read_csv('employee_information.csv')
+    def __init__(self, firstname, lastname):
+        """Create employee object that can create customers and create bank accounts"""
+        self.firstname = firstname
+        self.lastname = lastname
+        if
+        data = pd.read_csv('employee_information.csv')
         if len(data) > 0:
             employee_id = max(data['user_id']) + 1
         else:
             employee_id = 1000000000
         self.employee_id = employee_id
-		append_this = [self.firstname, self.lastname, self.employee_id]
+        append_this = [self.firstname, self.lastname, self.employee_id]
         with open('employee_information.csv', 'a', newline='') as f:
             wr = csv.writer(f, dialect='excel')
             wr.writerow(append_this)
-			
-	def create_customer(firstname, lastname, address):
-		customer = Customer(firstname, lastname, address)
-		return customer, f"User ID: {customer.user_number()}"
 
-	def create_bank_account(accounttype="", userid=""):
-		if accounttype != 'checking' or accounttype != 'savings':
-			account_type = input('Please enter account type: checking or savings: ')
-		else:
-			pass
-		user_id = userid
-		while type(user_id) != int:
-			try:
-				user_id = int(input('Please enter valid user id: '))
-			except ValueError:
-				user_id = int(input('Please enter valid user id(integer only): '))
-			bank_account = BankAccount(account_type, user_id)
-		return bank_account
+    def create_customer(self, firstname, lastname, address):
+        customer = Customer(firstname, lastname, address)
+        return customer, f"User ID: {customer.user_number()}"
+
+    def create_bank_account(self, accounttype="", userid=""):
+        if accounttype != 'checking' or accounttype != 'savings':
+            account_type = input('Please enter account type: checking or savings: ')
+        else:
+            pass
+        user_id = userid
+        while type(user_id) != int:
+            try:
+                user_id = int(input('Please enter valid user id: '))
+            except ValueError:
+                user_id = int(input('Please enter valid user id(integer only): '))
+            bank_account = BankAccount(account_type, user_id)
+        return bank_account
 
 
-x = create_customer('jordan','tang','myaddress')
+x = Employee('jordan', 'tang')
+x.create_customer('jordan', 'tang', 'address')
 # x = Customer('Jordan', 'Tang', 'my address')
 #print(x.firstname)
 # a = BankAccount('checking')
