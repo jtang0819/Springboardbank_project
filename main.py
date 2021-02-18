@@ -108,8 +108,8 @@ class Employee:
         return bank_account
 
 
-x = Employee('jordan', 'tang', 'analydddst')
-x.create_customer('jordan', 'tang', 'address')
+# x = Employee('jordan', 'tang', 'analydddst')
+# x.create_customer('jordan', 'tang', 'address')
 # x = Customer('Jordan', 'Tang', 'my address')
 #print(x.firstname)
 # a = BankAccount('checking')
